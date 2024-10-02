@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Sudoku Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(3, 50px);
+            gap: 5px;
+        }
+        input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 18px;
+            border: 2px solid #333;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>3x3 Sudoku Grid</h2>
+    <div class="grid">
+        <!-- 3x3 Grid -->
+        <input type="number" id="cell-0-0" min="1" max="9">
+        <input type="number" id="cell-0-1" min="1" max="9">
+        <input type="number" id="cell-0-2" min="1" max="9">
+
+        <input type="number" id="cell-1-0" min="1" max="9">
+        <input type="number" id="cell-1-1" min="1" max="9">
+        <input type="number" id="cell-1-2" min="1" max="9">
+
+        <input type="number" id="cell-2-0" min="1" max="9">
+        <input type="number" id="cell-2-1" min="1" max="9">
+        <input type="number" id="cell-2-2" min="1" max="9">
+    </div>
+
+    <div class="button-container">
+        <button onclick="solveGrid()">Solve</button>
+        <button onclick="clearGrid()">Clear</button>
+    </div>
+</div>
+
+<script>
+    // Function to get grid values
+    function getGridValues() {
+        let grid = [];
+        for (let row = 0; row < 3; row++) {
+            let currentRow = [];
+            for (let col = 0; col < 3; col++) {
+                let cell = document.getElementById(`cell-${row}-${col}`).value;
+                currentRow.push(cell ? parseInt(cell) : 0); // Store 0 for empty cells
+            }
+            grid.push(currentRow);
+        }
+        return grid;
+    }
+
+    // Dummy solver function
+    function solveGrid() {
+        let grid = getGridValues();
+        // Replace this with an actual solving algorithm
+
+        // Dummy solution to fill random values for now
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (grid[row][col] === 0) {
+                    document.getElementById(`cell-${row}-${col}`).value = Math.floor(Math.random() * 9) + 1;
+                }
+            }
+        }
+    }
+
+    // Clear grid function
+    function clearGrid() {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                document.getElementById(`cell-${row}-${col}`).value = '';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
